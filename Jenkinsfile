@@ -1,29 +1,23 @@
 pipeline {
-    agent any {
-         tools { 
+    agent any
+    tools { 
         maven 'Maven 3.3.9' 
         jdk 'jdk8' 
     }
-    }
     stages {
-        stage('Build') {
+        stage ('Initialize') {
             steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                ''' 
+            }
+        }
+
+        stage ('Build') {
+            steps {
+                echo 'This is a minimal pipeline.'
                 sh 'mvn clean package'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
-        }
-        stage('Deliver') {
-            steps {
-                sh './jenkins/scripts/deliver.sh'
             }
         }
     }
