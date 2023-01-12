@@ -1,12 +1,14 @@
 pipeline {
-    agent any
+    agent any {
+    
+    
     stages {
-         stage ('Build') {
+        stage('Build') {
             steps {
-                echo 'This is a minimal pipeline.'
                 sh 'mvn clean package'
             }
-             stage('Test') {
+        }
+        stage('Test') {
             steps {
                 sh 'mvn test'
             }
@@ -21,6 +23,5 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
-    }
     }
 }
