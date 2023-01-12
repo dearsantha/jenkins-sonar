@@ -6,13 +6,8 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-        
-        }
-        stage('Deliver') {
+       
+               stage('Deliver') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
             }
