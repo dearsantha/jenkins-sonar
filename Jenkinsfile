@@ -29,10 +29,8 @@ pipeline {
             steps{
                 withSonarQubeEnv('sonar'){
                     sh "mvn sonar:sonar \
-                    -Dsonar.login=admin \
-                    -Dsonar.password=1111 \
-  -Dsonar.projectKey=jenkins-pipeline-sonarQube \
-  -Dsonar.host.url=http://15.206.186.20:9000/"
+                -Dsonar.projectKey=jenkins-pipeline-sonarQube \
+                -Dsonar.host.url=http://15.206.186.20:9000/"
                 }
             }
     }
