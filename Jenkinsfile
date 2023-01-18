@@ -25,5 +25,11 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
+        stage('sonar quality check'){
+            steps{
+                withSonarQubeEnv('sonar'){
+                    sh "mvn sonar:sonar"
+                }
+            }
     }
 }
