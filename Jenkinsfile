@@ -27,6 +27,7 @@ pipeline {
         }
         stage('sonar quality check'){
             steps{
+		    script{
                 withSonarQubeEnv('sonar'){
                     sh "mvn sonar:sonar \
                 -Dsonar.projectKey=jenkins-sonar \
@@ -39,7 +40,7 @@ pipeline {
                  error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}"
               }
 	 }
-      
+		    }
 	    }
 	}
     }
