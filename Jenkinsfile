@@ -30,9 +30,17 @@ pipeline {
                 withSonarQubeEnv('sonar'){
                     sh "mvn sonar:sonar \
                 -Dsonar.projectKey=jenkins-sonar \
-                -Dsonar.host.url=http://15.207.14.236:9000/"
+                -Dsonar.host.url=http://13.233.117.201:9000/"
               }
             }
     }
+  stage("Quality GAte Status check"){
+	timeout(time:1,unit:'HOURS'){
+		def qg = waitForQualityGate()
+        if (qg.status != 'OK') {
+	error "pipeline aborted due to quality check failure: ${qg.status}"
+}
+}
+}      
 }
 }
