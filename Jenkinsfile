@@ -32,14 +32,14 @@ pipeline {
                 -Dsonar.projectKey=jenkins-sonar \
                 -Dsonar.host.url=http://13.233.117.201:9000/"
               }
-      steps{
+      
 	 timeout(time:1,unit:'HOURS'){
 	      def qualitygate = waitForQualityGate()
               if (qualitygate.status != "OK") {
                  error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}"
               }
 	 }
-      }
+      
 	    }
 	}
     }
