@@ -29,9 +29,7 @@ pipeline {
             steps{
 		    script{
                 withSonarQubeEnv('sonar'){
-                    sh "mvn sonar:sonar \
-                -Dsonar.projectKey=jenkins-sonar \
-                -Dsonar.host.url=http://13.233.117.201:9000"
+                    sh "mvn sonar:sonar"
               }
       
 	 timeout(time:1,unit:'HOURS'){
